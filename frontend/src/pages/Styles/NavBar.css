@@ -1,0 +1,47 @@
+*{
+    box-sizing: border-box;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    height: 12vh;
+    width: 100%;
+    justify-content: space-around;
+    text-align: center;
+    flex-wrap: wrap;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    align-items: center;
+    padding-left: 2%;
+}
+
+.container .title {
+    font-size: 2rem;
+    text-align: center;
+    /*background-color: gray;*/
+    margin-right: 15%;
+    margin-left: 1%;
+}
+
+.container .child{
+    margin: auto;
+    padding: 1% ;
+    text-decoration: none;
+    box-sizing: border-box;
+    border-radius: 5px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    transition: 0.3s;
+}
+
+.container .child:hover{
+    background-color: #F2A65A;
+    cursor: pointer;
+}
+
+.signIn{
+    background-color: #F2A65A ;
+}
+.container .signIn:hover{
+    background-color: #ffdf99;
+    color: black;
+}

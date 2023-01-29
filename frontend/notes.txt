@@ -1,0 +1,120 @@
+1. React props: i can include props inside a curly braces, create sth like
+Header.defaultProps={
+  title: "Miał" // this is defauly props when i dont sent anything to props
+}
+
+i can declare type of variable when i import propTypes in a component and below
+our render component i have to use:
+
+nameComponent.propTypes={
+    title: PropTypes.string
+    title: PropTypes.string.isRequired // it means that i have to pass props string
+
+}
+if i want to take props from one file.tsx and usinf this in another i have
+to use dulbe curly braces like this {{title, color}} and i can use it inside
+a render component
+
+2. CSS in react
+    a. I can do it inline - pls dont use it
+    b. i can create variable below render component like:
+        const headingStyle={
+            color: 'red',
+            backgroundColor: 'black',
+        }
+    and using this insilde inline like <h2 style={headingStyle}>title<h2/>
+    c. Better opoiotn is using dynamic styling(create file.css which you import
+        to tsx file )
+3. Event:
+    a. onClick - i can use it like a prop which could be pass to doffrent component inside after a click
+    a button or something
+4. crate a list with map when i have array of object like that:
+    const tasks=[
+        {
+            id:1,
+            text: "foodShiping",
+            day: "Feb 5th at 2:30pm",
+            reminder: false,
+        }
+        ...
+    ]
+
+    inside a component using map and creating list:
+
+    <>
+        {tasks.map((task)=>(<h3 key={task.id}>{task.text}</h3>))}
+    </>
+
+5. using hooks useState inside a function( when i use useState i can use array
+    of object or sth inside a componet - good to use, and use setTasks add new object)
+    // import {useState} from 'react'
+    const [tasks,setTasks] = useState(outArray in advance ^) advance=z góry
+    // better is using our small database which is array of object in a App.tsx
+    // because it should be visible in our entire app, and when we want to using
+    // one of the object from array in object in our component Tasks we have to
+    // sent our array in props
+6. i can use react icons from react-icons which i have to install using npm i react-icons
+    after import and installed react icons i have restart server :
+    // import {FaTimes} from 'react-icons/fa' fa means font awesome
+7. create delete task // user props to delete !
+    every funconality should be in main App.tsx like delete, add or sth
+
+8. Toggle Reminder - doing somethig when i do somethink on object  for example
+    doubleClick and after that in a console we will se id of object
+9. !!!!! Worth to know !!!!!
+    i can add class name to object inline like this:
+
+        className={`task ${task.reminder ? 'reminder' : ""}`} - mindFuck but very useFull and look smart XD
+
+        <div
+              className={`task ${task.reminder && 'reminder'}`}
+              onDoubleClick={() => onToggle(task.id)}
+            >
+
+10. Add form in react !!!! example of form in react, it can have name AddTask
+    1:06 min traversymedia CrashCourse
+11. Another important thing to do is that i can use useState like a condition to
+    show sth for example addForm to add new task. I can use operand && to create
+    condition
+
+    // it was declare below App render. This is useState for AddButton
+    const [showAddTask, setShowAddTask] = useState(false)
+
+    //this is out condition
+    {showAddTask && <AddTask onAdd={addTask} />}
+
+    another good practise to use condition inline a component when its true or
+    false
+
+    <Button
+              color={showAdd ? 'red' : 'black'}
+              text={showAdd ? 'Close' : 'Add'}
+              onClick={onAdd}
+            />
+12 Build for produciotn 1:19 traversyMedia - immportant knowladge !
+13 Create server json to use database in ale display tasks on the screen 1:21
+14 in format json keys have to be in double quotes "id" and value too
+    has to be inside a double quotes
+15. How to fetch data from backed, from our database
+    a. using useEffect - its another hook
+16. If i Want to delete sth from server 1:30
+17. Using react-router-dom !!! very important
+    a. import necessary lib
+    b. for each element in a navBar i have to create component and after it
+        i have to create link to that components
+18. I can use useLocation hook from react-router-dom. It allows us to look at the
+    route where the currently on !
+
+    if I want to add some condition to component i have put my component inside
+    a curly braces and before the component a put condition for example:
+
+
+
+    {location.pathname === '/' && (
+            <Button
+              color={showAdd ? 'red' : 'black'}
+              text={showAdd ? 'Close' : 'Add'}
+              onClick={onAdd}
+            />
+          )}
+19. Another hook to learn is useParams

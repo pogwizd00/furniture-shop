@@ -1,0 +1,66 @@
+.furniture-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 100vh;
+    justify-content: left;
+    margin-left: 2vw;
+    margin-bottom: 4vh;
+}
+
+.furniture-children {
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: row;
+    width: 50vw;
+    height: 30vh;
+}
+
+.image-place-furniture {
+    height: 100%;
+    width: 40vw;
+    border-radius: 5%;
+    box-shadow: #282c34;
+    margin-right: 2vw;
+}
+
+.about-place-furniture {
+    border-radius: 7px;
+    height: 100%;
+    width: 50vw;
+}
+
+.button-buy {
+    position: fixed;
+    top: 50%;
+    left: 85%;
+    /*transform: translate();*/
+}
+
+.order-paper {
+    position: fixed;
+    top: 50%;
+    left: 57%;
+    height: 55%;
+    width: 40%;
+    transform: translate(0, -50%);
+}
+
+.order-all {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+}
+
+.order-info {
+    height: 100%;
+    width: 50%;
+
+}
+
+.order-result {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}

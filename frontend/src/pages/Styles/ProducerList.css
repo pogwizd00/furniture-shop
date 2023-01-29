@@ -1,0 +1,37 @@
+.producers-list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 100vh;
+    align-items: center;
+}
+
+.producer-children {
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: row;
+    width: 80vw;
+    height: 30vh;
+}
+
+.image-place {
+    height: 100%;
+    width: 30vh;
+    border-radius: 5%;
+    box-shadow: #282c34;
+    margin-right: 2vw;
+}
+
+.about-place {
+    border-radius: 7px;
+    height: 100%;
+    width: 70vw;
+}
+
+.button-basket {
+    background-color: #F2A65A;
+}
+
+.button-basket:hover {
+
+}

@@ -1,0 +1,14 @@
+.furniture-list-container {
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.furniture-list-children {
+    width: 31%;
+    margin: 1% 1%;
+}
