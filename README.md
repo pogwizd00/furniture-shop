@@ -1,6 +1,6 @@
 # Desciption
 
-It is a RESTful application that uses the REACT library to create the user interface.\
+It's a RESTful application that uses the REACT library to create the user interface.\
 It presents simulations of a furniture online store. Below I present the created features:
 
 ## Products List:
