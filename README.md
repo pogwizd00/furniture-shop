@@ -1,6 +1,6 @@
 # Desciption
 
-It's a RESTful application in NestJS and the REACT library to create the user interface with component library Mantine.\
+It's a RESTful application in NestJS and the REACT library to create the user interface with components library Mantine.\
 It presents simulations of a furniture online store. Below I present the created features:
 
 ## Products List:
