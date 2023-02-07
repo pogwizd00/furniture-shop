@@ -118,3 +118,73 @@ a render component
             />
           )}
 19. Another hook to learn is useParams
+
+                    "useEffect"
+
+20. useEffect hooka mozemy uzywac gdy chcemy aby był tylko
+    uruchamiany w momencie gdy dana wartosc jest zmieniana, przesylanie
+    za pomoca props ... ,[wartosc]). Ale moze tez uruchamiany tylko raz.
+    Łatwiejsze rozumienie hooka useEffect mozna porownac to tak zwanego
+    addEventListener. W celu wywowalania hooka useEffect tylko raz
+    w momencie kiedy przegladarka sie przeladowuje trzeba go zainicjowac pustą
+    tablicą "array" ... , [])
+
+21. Przy pomocu hooka useEffect mozna czyścić wczesniej uzywane zależności
+    na przyklad po kliknieciu przycisku ktory ma wyswietlac dany komponent,
+    który również był komponentem funkcjionalnym i żeby usunąć funcjonalnmości
+    tego komponentu to wewnątrz hook'a useEffect tworzymy returna i wewnątrz niego
+    usówamy zależności componentu który po kliknieciu staje się niewidoczny
+
+22. Zawsze kiedy uzywamu useEffect musimy być czujni w odeniesieniu do zależności,
+    pomiedzy zmiennymi jakie wykorzystujemy. Musimy przeanalizowac czuy nasz hook,
+    useEffect powinien wykonac sie raz przy rendorowaniu strony czy powinien zostac wykonywany
+    przy kazdorazowym zmianie wartości.
+
+23. Fetching Data from API: Uzywajac useEffect oraz useState do fetchowania danych
+    z bazydanych zazwyczaj chcemy aby pobieranie danych wykonało sie tylko raz dlatego tez
+    musimy w useEffect dac pusta tablice dependecnis aby to sie wykonalo tylko raz.
+    ..., []). Do fetchownia danych z endPointa mozna uzyc biobiotegi axios lub ky.
+    do zapytac typu post,get,delete,put,patch
+
+24. W fajny sposob mozna uzyc tekst inputa oraz useEffecta aby z danych ktore zostaly pobrane z bazy
+    wystiwetlic tylko rekord ktoreg id sie podało do tekstinputa
+
+25. Kolejnym fajnym zastosowaniem jest uzycie buttona do zatwierdzania ktory rekord o id podanym w textinpucie
+    chcemy wyciagnac, wszystko korzystajac z useEffecta oraz useStata odc 14
+
+
+                       "useContext"
+
+26. hook Context tworzymy za pomoca exportowania z jakiegos komponentu
+    wartości do komponentow które w hierarchi drzewa pod tym componentem
+    są w duzej odleglosci i problematyczne by było przesylanie z componenta do
+    komponenta w propsach tej jednej wartości. W takim przypradkach uzywamy Contexta.
+    A dokaldnie useContext. Przydatny hook dzieki ktoremy mozemy wykorzystac wartości
+    z componentow rodziców w componentach pochodnych.
+
+
+                        "useReducer"
+
+27. useReducer jest to hook ktory jest podobny do useState.
+    Również slozu do zarzadzania stanem.
+
+28. useReducer jest to hook który zmieenia aktualny stan.
+    jako parametry przyjmuje useReducer(reducer, initialState)
+    reducer jest to funckja ktorej zadaniem jest wykonanie akcji
+    na aktualnym stanie reduce(currentState, action);
+
+29. Przykladem wykorzystania useReducer jest na przyklad stworzenie
+    zwyklego conutera ktory odejmuje, dodaje, resetuje wartosc, uzywajac
+    switch case. przydatny hook, odcinek 19
+
+30. za pomoca reduce mozna dokonowac modyfikacji na obiektach
+    Mozna wykorzystac tą samą funckje reduce(currentState, action) do
+    zmiany stanu innego local/global state.
+
+31. hook'a useReducer mozna wykorzystywac z useContext w celu przesylania
+    calej funkcjonalności (np. Countera) pomiedzy componentami w hierarchii
+    drzewa naszego projektu. odcinek 23
+
+32. Lepiej jest uzyc useReduce do obiektow a do typów prymitywnych useState.
+    useReduce uzywamy gdy chcemy aby nasza managment state była globalna, natomiast
+    useStete w momencie gdy chemy aby nasza state była w zakresie lokalnym

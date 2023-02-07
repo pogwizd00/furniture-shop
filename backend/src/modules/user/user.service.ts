@@ -1,11 +1,11 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import * as argon2 from 'argon2';
 import { User } from '@prisma/client';
 import { UpdateFurnitureList } from './dto/updateFurnitureList';
-import { ListFurnitureForUserDto } from './dto/listFurnitureForUserDto';
+import { UpdateUserDataDto } from './dto/updateUserDataDto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
@@ -52,15 +52,18 @@ export class UserService {
       where: {
         id: id,
       },
-      // select: {
-      //   furnitures: true,
-      // },
       include: {
         furnitures: {},
       },
     });
     if (!user) throw new NotFoundException("User doesn't exist");
     return user;
+  }
+
+  async findOneToUpdate(id: number) {
+    return this.prismaService.user.findUnique({
+      where: { id: id },
+    });
   }
 
   async getListOfFurniture(id: number) {
@@ -88,6 +91,19 @@ export class UserService {
         lastName: updateUserDto.lastName,
         email: updateUserDto.email,
         password: passwd,
+      },
+    });
+  }
+
+  async updateUserData(id: number, updateUserDataDto: UpdateUserDataDto) {
+    const user = this.findOne(id);
+    return this.prismaService.user.update({
+      where: { id },
+      data: {
+        firstName: updateUserDataDto.firstName,
+        lastName: updateUserDataDto.lastName,
+        email: updateUserDataDto.email,
+        password: updateUserDataDto.password,
       },
     });
   }

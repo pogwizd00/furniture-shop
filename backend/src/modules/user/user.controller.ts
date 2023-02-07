@@ -7,17 +7,15 @@ import {
   Param,
   Delete,
   ParseIntPipe,
-  Put,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { UserDto } from './dto/user-dto';
 import { plainToInstance } from 'class-transformer';
 import { UserFurnitureDto } from './dto/userFurniture-dto';
-import { UpdateFurnitureDto } from '../furnitures/dto/update-furniture.dto';
 import { UpdateFurnitureList } from './dto/updateFurnitureList';
-import { ListFurnitureForUserDto } from './dto/listFurnitureForUserDto';
+import { UpdateUserDataDto } from './dto/updateUserDataDto';
+import { GetUserToUpdate } from './dto/getUserToUpdate';
 
 @Controller('user')
 export class UserController {
@@ -41,20 +39,23 @@ export class UserController {
     return new UserFurnitureDto(await user);
   }
 
+  @Get('update-user-data/:id')
+  async findOneToUpdate(@Param('id', ParseIntPipe) id: number) {
+    const userToUpdate = this.userService.findOneToUpdate(id);
+    return new GetUserToUpdate(await userToUpdate);
+  }
+
   //zmiana z put na patch bo bede zmienial tylko liste furniture
   @Patch(':id')
   update(
     @Param('id', ParseIntPipe) id: number,
-    @Body() updateUserDto: UpdateUserDto,
+    @Body() updateUserDataDto: UpdateUserDataDto,
   ) {
-    return this.userService.update(id, updateUserDto);
+    return this.userService.update(id, updateUserDataDto);
   }
 
   @Get('furnitures-list/:id')
-  getListOfFurniture(
-    @Param('id', ParseIntPipe) id: number,
-    listFurnituresForUser: ListFurnitureForUserDto,
-  ) {
+  getListOfFurniture(@Param('id', ParseIntPipe) id: number) {
     return this.userService.getListOfFurniture(id);
   }
 
