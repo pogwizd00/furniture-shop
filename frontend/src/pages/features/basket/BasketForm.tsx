@@ -20,7 +20,7 @@ interface BasketFormProps {
 
 export const BasketForm: FC<BasketFormProps> = () => {
 
-    const refresh = () => window.location.reload();
+
     const navigate = useNavigate();
     const userId = getCookieName('user-id');
 
@@ -75,10 +75,13 @@ export const BasketForm: FC<BasketFormProps> = () => {
         }
     }
 
-    const handleOnClickRemoveFurniture = async (id_furniture: number) => {
+    const handleOnClickRemoveFurniture =  (id_furniture: number) => {
         try {
-            await removeFurnitureFromBasket(parseInt(userId), id_furniture);
-            refresh();
+            removeFurnitureFromBasket(parseInt(userId), id_furniture).then(()=>{
+                const furnituresAfterRemove = furnituresList.filter(
+                    (furniture)=> id_furniture !== furniture.id);
+                setFurnitures(furnituresAfterRemove);
+            })
             notificationRemoveFurnitureFromBasket();
         } catch (error) {
             orderBadNotification();
@@ -178,8 +181,4 @@ export const BasketForm: FC<BasketFormProps> = () => {
             <div/>
         </div>
     );
-    // kraj
-    // miejsce zamieszkania
-    // numer poczty
-    // total prize
 };
