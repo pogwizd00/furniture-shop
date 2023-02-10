@@ -13,6 +13,7 @@ import {NavbarAfterLogin} from "./NavbarAfterLogin";
 import {SignUp} from "./SignUp";
 import {AboutWhenIsNotLogged} from "./AboutWhenIsNotLogged";
 import {Producers} from "./Producers";
+import {Orders} from "./Orders";
 
 
 interface RoutingProps {
@@ -20,6 +21,10 @@ interface RoutingProps {
 
 
 const publicRoutes = [
+    {
+        path: '/admin',
+        element: <Orders/>
+    },
     {
         path: '/',
         element: <Layout/>,
@@ -58,6 +63,10 @@ const publicRoutes = [
 ]
 
 const privateRoutes = [
+    {
+      path: '/admin',
+      element: <Orders/>
+    },
     {
         path: '/',
         element: <NavbarAfterLogin/>,
