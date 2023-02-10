@@ -11,6 +11,8 @@ import {
 import { OrdersService } from './orders.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
+import { plainToInstance } from 'class-transformer';
+import { OrderDto } from './dto/orderDto';
 
 @Controller('orders')
 export class OrdersController {
@@ -23,12 +25,13 @@ export class OrdersController {
 
   @Get()
   findAll() {
-    return this.ordersService.findAll();
+    const orders = this.ordersService.findAll();
+    return plainToInstance(OrderDto, orders);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.ordersService.findOne(+id);
+  findOne(@Param('id', ParseIntPipe) id: number) {
+    return this.ordersService.findOne(id);
   }
 
   @Patch(':id')
