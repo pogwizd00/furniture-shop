@@ -9,7 +9,11 @@ It presents simulations of a furniture online store. Below I present the created
 
 ## About Me:
 
-![image](https://user-images.githubusercontent.com/77283701/215366211-cbae2f72-161e-4db8-aad8-708310303c6f.png)
+![image](https://user-images.githubusercontent.com/77283701/217500626-94eaef2f-62b5-405d-be69-c74ecdba46af.png)
+
+## Modal To Update User Data:
+
+![image](https://user-images.githubusercontent.com/77283701/217500233-8b275c32-3d98-49de-a21c-d5e6f3b16443.png)
 
 ## Producers:
 
