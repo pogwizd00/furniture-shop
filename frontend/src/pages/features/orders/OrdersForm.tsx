@@ -1,5 +1,5 @@
 import React, {FC, useEffect} from 'react';
-import {Title, Paper, Table, Modal} from '@mantine/core';
+import {Title, Paper, Table, Modal, useMantineTheme, Button, Textarea} from '@mantine/core';
 import {getOrders, removeOrder} from "./api";
 import {OrderDto} from "../../types/OrderDto";
 import { IconTrash } from '@tabler/icons-react';
@@ -13,7 +13,7 @@ export const OrdersForm: FC<OrdersFormProps> = ({}) =>{
 
     const [orders, setOrders] = React.useState<OrderDto[]>([]);
     const [open, setOpen] = React.useState(false);
-
+    const [order,setOrder] = React.useState<OrderDto>();
 
     useEffect(() => {
         getOrders().then((data) =>{
@@ -21,10 +21,12 @@ export const OrdersForm: FC<OrdersFormProps> = ({}) =>{
         })
     }, []);
 
+
     const removeRow = (id: number) =>{
         removeOrder(id).then(()=>{
             const dataAfterRemoveRow = orders.filter((row)=> id !== row.id);
             setOrders(dataAfterRemoveRow);
+            notificationAfterSuccessfullyDeleted();
         })
     }
 
@@ -43,8 +45,10 @@ export const OrdersForm: FC<OrdersFormProps> = ({}) =>{
         </tr>
     );
 
+    const theme = useMantineTheme();
+
     const rows = orders && orders.map((data)=>(
-        <tr key={data.id}>
+        <tr onClick={()=>setOrder(data)} key={data.id} style={{cursor:'pointer'}}>
             <td>{data.email}</td>
             <td>{data.residence}</td>
             <td>{data.dateOfOrder.toString()}</td>
@@ -54,7 +58,39 @@ export const OrdersForm: FC<OrdersFormProps> = ({}) =>{
             <td>{data.detailsToOrder}</td>
             <td>{data.price}</td>
             <td className={'icons-container'} width={50}>
-                <IconTrash onClick={()=>removeRow(data.id)} style={{cursor:'pointer', color:'red'}}/>
+                <IconTrash
+                    onClick={()=>{
+                        removeRow(data.id);
+                    }
+                }
+                    style={{ color:'black'}}
+                />
+                <Modal
+                    opened={open}
+                    onClose={()=>setOpen(false)}
+                    title={'Info about order :D'}
+                    overlayColor={theme.colorScheme === 'dark' ? theme.colors.dark[9] : theme.colors.gray[2]}
+                    overlayOpacity={0.01}
+                    overlayBlur={3}
+                >
+                    <div className={'info-container'}>
+                        <div className={'info-order'}>
+                        <div><span style={{fontWeight:'bold'}}>Email:</span> {order?.email}</div>
+                        <div><span style={{fontWeight:'bold'}}>Country:</span> {order?.country}</div>
+                        <div><span style={{fontWeight:'bold'}}>Residence:</span> {order?.residence}</div>
+                        <div><span style={{fontWeight:'bold'}}>PostalCode:</span> {order?.postalCode}</div>
+                        <div><span style={{fontWeight:'bold'}}>Phone number:</span> {order?.phoneNumber}</div>
+                        <div><span style={{fontWeight:'bold'}}>Price: </span> {order?.price}$</div>
+                        </div>
+                        <div className={'info-button'}>
+                            <Textarea
+                                placeholder="Your comment to customer"
+                            />
+                            <Button color="yellow" uppercase>Sent</Button>
+                        </div>
+                    </div>
+                </Modal>
+                <IconEye onClick={()=>setOpen(true)}/>
             </td>
         </tr>
     ))
@@ -68,7 +104,7 @@ export const OrdersForm: FC<OrdersFormProps> = ({}) =>{
             <Paper style={{margin:'2vh 2vw'}} shadow="xs" p="md">
                 <Table striped highlightOnHover withBorder withColumnBorders>
                     <thead>{headers}</thead>
-                    <tbody>{rows}</tbody>
+                    <tbody >{rows}</tbody>
                 </Table>
             </Paper>
         </div>

@@ -6,6 +6,6 @@ export interface OrderDto {
     postalCode:     string;
     phoneNumber:    string;
     price:          number;
-    detailsToOrder: null;
+    detailsToOrder?: string;
     dateOfOrder:    Date;
 }

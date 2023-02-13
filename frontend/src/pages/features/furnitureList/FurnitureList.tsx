@@ -16,6 +16,8 @@ type FurnitureUser = {
     furnituresId: number
 }
 
+
+
 export const FurnitureList: FC = () => {
     const [furnitures, setFurnitures] = React.useState<SimpleFurniture[]>([]);
 

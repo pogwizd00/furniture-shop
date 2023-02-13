@@ -1,0 +1,19 @@
+.info-container{
+    display: flex;
+    flex-direction: row;
+}
+.info-order{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1vw;
+    align-items: flex-start;
+    width: 60%;
+    height: 100%;
+}
+.info-button{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 40%;
+
+}
