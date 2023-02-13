@@ -56,7 +56,7 @@ export const OrdersForm: FC<OrdersFormProps> = ({}) =>{
             <td>{data.country}</td>
             <td>{data.postalCode}</td>
             <td>{data.detailsToOrder}</td>
-            <td>{data.price}</td>
+            <td>{data.price}$</td>
             <td className={'icons-container'} width={50}>
                 <IconTrash
                     onClick={()=>{
