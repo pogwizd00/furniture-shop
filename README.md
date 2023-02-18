@@ -23,6 +23,10 @@ It presents simulations of a furniture online store. Below I present the created
 
 ![image](https://user-images.githubusercontent.com/77283701/215366321-a115aa77-aa1f-4618-a2a8-a50701d470b9.png)
 
+## Admin page for orders, route: .../admin
+
+![image](https://user-images.githubusercontent.com/77283701/218469023-7f4f5885-2374-4a4c-9caa-63d55c0b6fb1.png)
+
 ## User Login Component:
 
 ![image](https://user-images.githubusercontent.com/77283701/215366402-33a0008c-2291-4868-8497-fc215dd1acf0.png)
