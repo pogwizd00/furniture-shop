@@ -1,19 +1,21 @@
 import React, {FC, useEffect} from 'react';
-import {Title, Paper, Table, Modal, useMantineTheme, Button, Textarea} from '@mantine/core';
+import {Title, Paper, Table, Modal, useMantineTheme, Button, Textarea, Input} from '@mantine/core';
 import {getOrders, removeOrder} from "./api";
 import {OrderDto} from "../../types/OrderDto";
-import { IconTrash } from '@tabler/icons-react';
-import { IconEye } from '@tabler/icons-react';
+import { IconTrash, IconSearch, IconEye } from '@tabler/icons-react';
 import '../../Styles/TableStyle.css'
 import {notificationAfterSuccessfullyDeleted} from "./notifications";
 
 interface OrdersFormProps {}
+
+
 
 export const OrdersForm: FC<OrdersFormProps> = ({}) =>{
 
     const [orders, setOrders] = React.useState<OrderDto[]>([]);
     const [open, setOpen] = React.useState(false);
     const [order,setOrder] = React.useState<OrderDto>();
+    const [email, setEmail] = React.useState('');
 
     useEffect(() => {
         getOrders().then((data) =>{
@@ -22,14 +24,30 @@ export const OrdersForm: FC<OrdersFormProps> = ({}) =>{
     }, []);
 
 
+
+
+    useEffect(() => {
+        const ordersWithEmail = searchByEmail(email);
+        setOrders(ordersWithEmail);
+
+    }, [email]);
+
+
     const removeRow = (id: number) =>{
         removeOrder(id).then(()=>{
             const dataAfterRemoveRow = orders.filter((row)=> id !== row.id);
+            console.log(dataAfterRemoveRow);
             setOrders(dataAfterRemoveRow);
             notificationAfterSuccessfullyDeleted();
         })
     }
 
+    const searchByEmail = (text: string) =>{
+        console.log(text);
+        const orderWithEmail = orders.filter((order)=> text == order.email);
+        console.log(orderWithEmail);
+        return orderWithEmail;
+    }
 
     const headers = (
         <tr>
@@ -102,6 +120,15 @@ export const OrdersForm: FC<OrdersFormProps> = ({}) =>{
                 <Title order={1}>Orders:</Title>
             </Paper>
             <Paper style={{margin:'2vh 2vw'}} shadow="xs" p="md">
+                <Input
+                    placeholder="Search by email"
+                    style={
+                        {marginBottom: '1vh'}
+                    }
+                    icon={<IconSearch/>}
+                    value={email}
+                    onChange={(event: { target: { value: React.SetStateAction<string>; }; }) =>setEmail(event.target.value.toString().toLowerCase())}
+                />
                 <Table striped highlightOnHover withBorder withColumnBorders>
                     <thead>{headers}</thead>
                     <tbody >{rows}</tbody>
